@@ -15,7 +15,7 @@ var shortcut = (function() {
     function handle(e) {
         objs.push(e);
         arr.forEach(function(x, key){
-            var tudook = true;
+            var status = true;
             var cont = (objs.length - 1) - (x.key.length -1);
             var j = 0;
             if(cont >= 0){
@@ -23,21 +23,21 @@ var shortcut = (function() {
                     var e = objs[i];
                     var keyCode = x.keys[j];
                     if(e.which == keyCode && x.ctrl == e.ctrlKey && x.shift == e.shiftKey && x.alt == e.altKey){
-                        tudook = true;
+                        status = true;
                     }else{
-                        tudook = false;
+                        status = false;
                         break;
                     }
                     if(e.target.nodeName == 'INPUT'){
-                        tudook = false;
+                        status = false;
                         break;
                     }
                     j++;
                 }
             }else{
-                tudook = false;
+                status = false;
             }
-            if(tudook){
+            if(status){
                 objs = [];
                 x.callBack.call();
             }
